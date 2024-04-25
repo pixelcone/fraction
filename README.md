@@ -21,7 +21,7 @@ you will be able to use dependency injection within the `handle()` method of you
 To install Fraction, run the `composer require` command:
 
 ```bash
-composer require pixelcone/fraction
+composer require pixelcone/fraction:0.1.1
 ```
 
 ## Using Fraction
@@ -46,8 +46,11 @@ An example of an Action class and its usage:
 namespace App\Actions;
 
 use App\Models\User;
+use Pixelcone\Fraction\AsAction;
 
-class CreateUserAction {    
+class CreateUserAction {
+    use AsAction;
+
     public function __construct(
         protected string $fullName;
         protected string $email;
@@ -84,14 +87,7 @@ class CreateUserAction {
 }
 ```
 
-There is no harm in running this Action as a plain object:
-
-```php
-(new CreateUserAction('Alex Doe', 'alex@gmail.com', 'pass'))->handle();
-```
-
-The better option, however, is to import a `Pixelcone\Fraction\AsAction` trait into the Action class
-and call the latter in a bit different way:
+Thanks to the `Pixelcone\Fraction\AsAction` trait, this Action class can be now called like this:
 
 ```php
 CreateUserAction::run('Alex Doe', 'alex@gmail.com', 'pass');
@@ -151,29 +147,8 @@ class ShowProfilePageFeature {
 }
 ```
 
-This class can now be called within the controller's method:
-
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Http\Features\ShowProfilePageFeature;
-
-class ProfileController {
-    // ...
-    
-    public function index ($request)
-    {
-        return (new ShowProfilePageFeature())->handle($request);
-    }
-    
-    // ...
-}
-```
-
-The more convenient option, however, is to import a `Pixelcone\Fraction\RunsFeatures` trait into
-controller and run the Feature class using `run()` method:
+With help of the `Pixelcone\Fraction\RunsFeatures` trait, this class can now be conveniently called within the
+controller's method:
 
 ```php
 <?php
