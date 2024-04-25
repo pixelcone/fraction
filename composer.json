@@ -1,0 +1,19 @@
+{
+    "name": "pixelcone/fraction",
+    "description": "A set of architecture abstractions to help you build structured and maintainable PHP apps",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Pavel Borunov",
+            "email": "info@delho.ee"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixelcone\\Fraction\\": "src/"
+        }
+    }
+}
