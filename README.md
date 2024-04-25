@@ -21,7 +21,7 @@ you will be able to use dependency injection within the `handle()` method of you
 To install Fraction, run the `composer require` command:
 
 ```bash
-composer require pixelcone/fraction:0.1.1
+composer require pixelcone/fraction:^0.1.1
 ```
 
 ## Using Fraction
